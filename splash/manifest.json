@@ -1,0 +1,37 @@
+{
+    "name": "Splash Fill",
+    "version" : "1.0",
+    "manifest_version" : 2,
+    "content_scripts": [
+        {
+            "matches":["https://www.supremenewyork.com/checkout"],
+            "js": ["splash.js"]
+        },
+        {
+			"matches": ["https://*/*/checkouts/*"],
+			"js": ["shopify.js"]
+        }, 
+        {
+			"matches": [
+				"https://*.shopifycs.com/*"
+			],
+			"js": [
+				"shopifycc.js"
+			],
+			"all_frames": true
+        },
+        {
+			"matches": [
+				"https://*/products/*"
+			],
+			"js": [
+				"shopifyrequest.js"
+			],
+			"all_frames": true
+		}
+    ],
+    "browser_action": {
+        "default_popup":"popup1.html",
+        "default_title": "Splash"
+    }
+}
