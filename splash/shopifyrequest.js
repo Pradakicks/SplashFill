@@ -1,5 +1,6 @@
 window.onload = function () {
     let domaindoc =  document.domain
+    console.log('testing')
     let item = {
         profile : {
             address: "123 main street",
