@@ -1,7 +1,7 @@
 {
-  "name": "c",
+  "name": "Splash Fill",
   "version": "1.0.0",
-  "description": "autofill",
+  "description": "autofill/chrome extension",
   "main": "splash.js",
   "type": "module",
   "dependencies": {
@@ -11,6 +11,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Adrian",
+  "author": "Prada#4873",
   "license": "ISC"
 }
