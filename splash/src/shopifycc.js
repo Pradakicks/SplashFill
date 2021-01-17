@@ -1,40 +1,22 @@
-let settings;
-let item = {
-    profile : {
-        address: "123 main street",
-        apt: "",
-        cardNumber: "4242424242424242",
-        cardType: "visa",
-        city: "Wallkill",
-        country: "United States", // country Name
-        cvv: "430",
-        email: "test@gmail.com", // put an actual email in
-        loginEmail: "arielpradashady@gmail.com", // put an actual email in
-        loginPass: "RgBiv123PradaUpNext", // put an actual email in
-        expirationMonth: 8,
-        expirationYear: 26,
-        firstName: "Tim",
-        id: "ID19573F",
-        lastName: "Smithson",
-        name: "Home",
-        nameOnCard: "Mr Tim Smithson",
-        phoneNumber: "8455416789",
-        state: "NY", // CA, NC, NY, etc...
-        zipCode: "12589",
-    }
-}
 window.onload = function () {
 	// chrome.storage.local.get({ profiles: [], selectedProfile: null, enabled: false, settings: {} }, (results) => {
 	// 	profile = results.profiles.find(profile => profile.id === results.selectedProfile);
 	// 	settings = results.settings;
-
-		if (true) {
-			if (item) {
+	chrome.storage.local.get('profile', (data) => {
+		this.profiles = data.profile.profile
+		
+		console.log(this.profiles)
+		console.log(this.profiles.addressLine1)
+		chrome.storage.local.get('modes', (data) => {
+			  this.modes = data.modes.modes
+			  console.log(this.modes)
+		if (this.profiles) {
+				if (this.modes.shopifyNormalACO) {
 				let fields = {
-					'number': item.profile.cardNumber,
-					'name': item.profile.nameOnCard,
-					'expiry': `${item.profile.expirationMonth}/${item.profile.expirationYear}`,
-					'verification_value': item.profile.cvv,
+					'number': this.profiles.cardNumber,
+					'name': this.profiles.nameOnCard,
+					'expiry': `${this.profiles.expirationMonth}/${this.profiles.expirationYear}`,
+					'verification_value': this.profiles.cvv,
 				}
 
 				Object.keys(fields).forEach(id => {
@@ -45,6 +27,12 @@ window.onload = function () {
 				chrome.runtime.sendMessage({action: 'completeCheckout'});
 			}
 		}
+
+		})
+	})
+		
+		
+
 //	});
 }
 

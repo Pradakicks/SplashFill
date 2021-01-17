@@ -84,7 +84,7 @@
     background:white ;
   }
 #profile-name {
-  height: 27.5px;
+  height: 36px;
   width: 286px;
 }
 ::placeholder {
@@ -111,7 +111,7 @@
     justify-content: center;
     overflow: hidden;
     height: 30px;
-    width: 155px;
+    width: 126px;
     border-radius: 5px;
     border: none;
     border: none;
@@ -130,7 +130,7 @@
   width: 74px;
 }
 #country {
-  height: 30px;
+  height: 36px;
   width: 139px;
 }
 #city {
@@ -140,7 +140,7 @@
   width: 219px;
 }
 #cvv {
-  width: 47px
+  width: 46px
 }
 #email {
   width: 284px;
@@ -154,25 +154,30 @@
 #card-number {
   width: 220px;
 }
+#profile-load{
+  margin: 3.5px;
+  height: 30px;
+  width: 126px;
+}
 .profile-btn {
   font-family: 'Open Sans', sans-serif;
 
   
   margin: 3.5px;
-  margin-top: 5px;
+  margin-top: 8px;
   margin-left: 5px;
   margin-right:5px ;
   color: #00AEEF;
   background-color: #BFEAFB;
     text-decoration: none;
-    font-size: 18px;
-    letter-spacing: 1.5px;
+    font-size: 16px;
+    letter-spacing: 2px;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    height: 27.5px;
-    width: 134px;
-    border-radius: 5px;
+    height: 35px;
+    width: 133px;
+    border-radius: 7px;
     border: none;
     outline: none;
 
@@ -184,6 +189,7 @@
   border: none;
   color: #00AEEF;
   margin: 3.5px;
+  margin-top: 8px;
   margin-left: 4px;
   margin-right:4px ;
   background-color: #BFEAFB;
@@ -193,8 +199,8 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    height: 29px;
-    width: 140px;
+    height: 35px;
+    width: 138px;
     border-radius: 5px;
     outline: none;
 
@@ -226,7 +232,15 @@
 
 
 
-
+.home-header {
+  font-family: 'Roboto', sans-serif;
+  font-size: 25px;
+  border: none;
+  margin-left: 4px;
+  width: 8em;
+  text-transform: none;
+  color: #00AEEF;
+}
 
 
 .settings-btn {
@@ -270,14 +284,36 @@
 
 }
 
+  
+.nav-btn {
+  margin: 6px;
+  color: white;
+  text-transform: uppercase;
+    text-decoration: none;
+    font-size: 1.3em;
+    letter-spacing: 1.5px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 3px;
+    border: none;
+    border: none;
+    outline: none;
+    background-color:#a5a4a7;
+   box-shadow: 1px 2.9px 16px rgba(249, 27, 38, 0.4);
+}
+
+
 .save-btn {
   background-color: #00AEEF;
   box-shadow: 1px 2.9px 16px rgba(27,139,249,0.4);
+  margin-top: 40px;
 }
 
 .clear-btn {
   background-color:#FF4C72;
   box-shadow: 1px 2.9px 16px rgba(249, 27, 38, 0.4);
+  margin-top: 40px;
 }
 .load-btn {
   background-color:#b46ff8;
@@ -310,3 +346,78 @@
   background-color: #BFEAFB;
   color: #00AEEF;
 }
+#sup-autofill-btn1 {
+  background-color: #BFEAFB;
+  color: #00AEEF;
+}
+#sup-aco-btn1 {
+  background-color: #BFEAFB;
+  color: #00AEEF;
+}
+#sup-atccart-btn1 {
+  background-color: #BFEAFB;
+  color: #00AEEF;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#login-body {
+  background-image: "https://cdn.discordapp.com/attachments/785309333784363068/791144632624218162/unknown.png";
+}
+
+#sign-in{
+  margin: 50px;
+}
+#auth-btn {
+  margin-top: px;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#metalabs-keys {
+  
+  width: 125%;
+  height: 25%;
+  overflow: hidden;
+  position: relative;
+  top: 100;
+  color: rgba(white, .5);
+  cursor: text;
+  transition: .25s ease;
+  margin: 5%;
+  display: block;
+  border: none;
+  padding: 10px 0;
+  border-bottom: solid 1px rgba(white, .5);
+  transition: all 0.3s cubic-bezier(.64,.09,.08,1);
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 96%, rgba(white, .5) 4%);
+  background-position: -200px 0;
+  background-size: 200px 100%;
+  background-repeat: no-repeat;
+  color: darken(rgba(white, .5), 20%);
+}
+
+
+
+
+#authorization-fail {
+  background-color:#FF4C72;
+  width: 95%;
+  height: 40px;
+  margin-top: 40px;
+  font-size: large;
+}
+
+

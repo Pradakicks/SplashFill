@@ -5,38 +5,15 @@ window.onload = function () {
     
     console.log(this.profiles)
     console.log(this.profiles.addressLine1)
-  
+
+      chrome.storage.local.get('modes', (data) => {
+          this.modes = data.modes.modes
+          console.log(this.modes)
+
+      if (this.modes.shopifyRequest == true || this.modes.shopifyRequest == 'true') {
+    
     let domaindoc =  document.domain
     let documentUrl = document.URL
-    // let item = {
-    //   quantity: 1,
-    //     profile : {
-    //         address: "578+Williams+Street",
-    //         apt: "",
-    //         cardNumber: "4060680218089298",
-    //         cardType: "visa",
-    //         city: "Boynton+Beach",
-    //         country: "US",
-    //         countryCode: "United States", // country Name
-    //         cvv: "922",
-    //         email: "arielpradashady@gmail.com", // put an actual email in
-    //         loginEmail: "arielpradashady@gmail.com",
-    //         loginEmaildomain:"arielpradashady",
-    //         loginEmailEnd:"gmail.com" , // put an actual email in
-    //         loginPass: "RgBiv123PradaUpNext", // put an actual email in
-    //         expirationMonth: '10',
-    //         expirationMonth1: 10,
-    //         expirationYear: '2024',
-    //         firstName: "Tim",
-    //         id: "ID19573F",
-    //         lastName: "Smithson",
-    //         name: "Home",
-    //         nameOnCard: "Mr Tim Smithson",
-    //         phoneNumber: "8455416789",
-    //         state: "FL", // CA, NC, NY, etc...
-    //         zipCode: "33473",
-    //     }
-    // }
     let item = {
       quantity: 1,
         profile : {
@@ -62,9 +39,30 @@ window.onload = function () {
     }
     console.log(item)
 // let property = document.getElementById('tags').value
+var responseText = ''
 
+async function getPaymentIds () {
 
-    
+  const paymentidReq = await fetch("https://deposit.us.shopifycs.com/sessions", {
+    "headers": {
+      "accept": "application/json",
+      "accept-language": "en-US,en;q=0.9",
+      "content-type": "application/json",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site"
+    },
+    "referrer": "https://checkout.shopifycs.com/",
+    "referrerPolicy": "strict-origin-when-cross-origin",
+    "body": `{\"credit_card\":{\"number\":\"${item.profile.cardNumber}\",\"name\":\"${item.profile.nameOnCard}\",\"month\":${item.profile.expirationMonth1},\"year\":${item.profile.expirationYear},\"verification_value\":\"${item.profile.cvv}\"}}`,
+    "method": "POST",
+    "mode": "cors"
+  })
+    responseText = await paymentidReq.text();
+  console.log(responseText)
+  return responseText
+} getPaymentIds ()
+
 var elem = document.getElementsByName('add')
 elem[0].addEventListener('click', function(){
     if (true){
@@ -81,7 +79,7 @@ elem[0].addEventListener('click', function(){
       let selectedVariant = document.getElementsByName('id')[0].value
 
       console.log(document.getElementsByName('id')[0].value)
-      async function fetchCheckout (){
+  async function fetchCheckout (){
         fetch(`https://${domaindoc}/checkout/`, {
   "headers": {
     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -101,22 +99,7 @@ elem[0].addEventListener('click', function(){
     return res
   })
       }
-//       fetch(`https://${domaindoc}/checkout/`, {
-//   "headers": {
-//     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-//     "accept-language": "en-US,en;q=0.9",
-//     "sec-fetch-dest": "empty",
-//     "sec-fetch-mode": "cors",
-//     "sec-fetch-site": "same-origin",
-//     "upgrade-insecure-requests": "1"
-//   },
-//   "referrerPolicy": "strict-origin-when-cross-origin",
-//  // "redirect": "follow",
-//   "body": null,
-//   "method": "GET",
-//   "mode": "cors",
-//   "credentials": "include"
-//   }).then((res)=>{
+
 
     fetch(`https://${domaindoc}/cart/${selectedVariant}:${item.quantity}`, {
   "headers": {
@@ -224,34 +207,14 @@ async function runIt () {
      //   console.log(response_html2)
         return response_html2
     } 
-    async function getPaymentIds () {
-
-        const paymentidReq = await fetch("https://deposit.us.shopifycs.com/sessions", {
-          "headers": {
-            "accept": "application/json",
-            "accept-language": "en-US,en;q=0.9",
-            "content-type": "application/json",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "same-site"
-          },
-          "referrer": "https://checkout.shopifycs.com/",
-          "referrerPolicy": "strict-origin-when-cross-origin",
-          "body": `{\"credit_card\":{\"number\":\"${item.profile.cardNumber}\",\"name\":\"${item.profile.nameOnCard}\",\"month\":${item.profile.expirationMonth1},\"year\":${item.profile.expirationYear},\"verification_value\":\"${item.profile.cvv}\"}}`,
-          "method": "POST",
-          "mode": "cors"
-        })
-        const responseText = await paymentidReq.text();
-        console.log(responseText)
-        return responseText
-      }
+    
 
 
         let gatewayUrl = `${realUrl}?step=payment_method`
         console.log(gatewayUrl)
         const response_html2 =  await getGateways(gatewayUrl);
        // console.log(response_html2)
-        const responseText =  await getPaymentIds();
+      //  const responseText =  await getPaymentIds();
         var pay_gateway = response_html2.split('data-select-gateway=')[1].split('"')[1] 
         var final_price = response_html2.split('data-checkout-payment-due-target="')[1].split('>')[1].slice(1).split('<')[0]
         console.log(final_price)
@@ -386,6 +349,8 @@ if (final_price == 0.00){
         }
         
     }
-   
-  }
+   }
+  })  
+}
+
   )}

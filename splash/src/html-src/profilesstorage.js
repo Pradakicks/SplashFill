@@ -100,7 +100,7 @@ chrome.storage.local.set({profile : value}, function() {
 
 }  
 
-document.getElementById('get-values-btn').onclick = function () {
+document.getElementById('profile-load').onclick = function () {
         chrome.storage.local.get('profile', (data) => {
             this.profiles = data.profile.profile
             console.log(this.profiles)

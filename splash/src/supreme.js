@@ -33,43 +33,53 @@ window.onload = function () {
 	// chrome.storage.local.get({ profiles: [], selectedProfile: null, enabled: false, settings: {} }, (results) => {
 	// 	profile = results.profiles.find(profile => profile.id === results.selectedProfile);
 	// 	settings = results.settings;
+	chrome.storage.local.get('profile', (data) => {
+		this.profiles = data.profile.profile
+		
+		console.log(this.profiles)
+		console.log(this.profiles.addressLine1)
+		chrome.storage.local.get('modes', (data) => {
+			  this.modes = data.modes.modes
+			  console.log(this.modes)
+			  if (this.profiles) {
+				if (this.modes.supremeACO == true || this.modes.supremeACO == 'true') {
 
-		if (true) {
-			if (item) {
-
-				let fields = {
-					'order_billing_name': `${item.profile.firstName} ${item.profile.lastName}`,
-					'order_email': item.profile.email,
-					'order_tel': item.profile.phoneNumber ,
-					'bo': item.profile.address,
-					'oba3': item.profile.address2,
-					'order_billing_address_3': item.profile.apt,
-					'order_billing_city': item.profile.city,
-					'order_billing_zip': item.profile.zipCode,
-					'cnb': item.profile.cardNumber,
-					'rnsnckrn': item.profile.cardNumber,
-					'vval': item.profile.cvv,
-					'orcer': item.profile.cvv,
-				}
-
-				Object.keys(fields).forEach(id => {
-					fillField(id, fields[id]);
-				});
-
-				fillField('order_billing_country', getCountryCode(item.profile.country), true);
-				fillField('order_billing_state', item.profile.state, true);
-				fillField('credit_card_type', item.profile.cardType, true);
-				fillField('credit_card_month', item.profile.expirationMonth, true);
-				fillField('credit_card_year', item.profile.expirationYear, true);
-                document.getElementsByClassName('icheckbox_minimal')[1].click();
-             //   document.querySelector('#cart-cc > fieldset > p > label > div > ins').click()
-				document.querySelector('.terms .icheckbox_minimal').classList.add('checked');
-                
-				if(item.supremeACO) {
-					document.querySelector('.button, .checkout').click();
+					let fields = {
+						'order_billing_name': `${item.profile.firstName} ${item.profile.lastName}`,
+						'order_email': item.profile.email,
+						'order_tel': item.profile.phoneNumber ,
+						'bo': item.profile.address,
+						'oba3': item.profile.address2,
+						'order_billing_address_3': item.profile.apt,
+						'order_billing_city': item.profile.city,
+						'order_billing_zip': item.profile.zipCode,
+						'cnb': item.profile.cardNumber,
+						'rnsnckrn': item.profile.cardNumber,
+						'vval': item.profile.cvv,
+						'orcer': item.profile.cvv,
+					}
+	
+					Object.keys(fields).forEach(id => {
+						fillField(id, fields[id]);
+					});
+	
+					fillField('order_billing_country', getCountryCode(item.profile.country), true);
+					fillField('order_billing_state', item.profile.state, true);
+					fillField('credit_card_type', item.profile.cardType, true);
+					fillField('credit_card_month', item.profile.expirationMonth, true);
+					fillField('credit_card_year', item.profile.expirationYear, true);
+					document.getElementsByClassName('icheckbox_minimal')[1].click();
+				 //   document.querySelector('#cart-cc > fieldset > p > label > div > ins').click()
+					document.querySelector('.terms .icheckbox_minimal').classList.add('checked');
+					
+					if(item.supremeACO) {
+						document.querySelector('.button, .checkout').click();
+					}
 				}
 			}
-		}
+
+		})})
+		
 	};
 
 

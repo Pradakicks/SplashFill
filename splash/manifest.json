@@ -2,21 +2,29 @@
     "name": "Splash Fill",
     "version" : "1.0",
     "manifest_version" : 2,
+    "permissions": ["storage", "identity"],
+    "icons": {
+        "48" : "icons/drip.png",
+		"128": "icons/drip1.png"
+    },
+    "background" : {
+      "scripts" : ["./background.js"]
+    },
     "content_scripts": [
         {
-            "matches":["https://www.supremenewyork.com/checkout"],
-            "js": ["splash.js"]
+        "matches":["https://www.supremenewyork.com/checkout"],
+        "js": ["src/supreme.js"]
         },
         {
 			"matches": ["https://*/*/checkouts/*"],
-			"js": ["shopify.js"]
+			"js": ["src/shopify.js"]
         }, 
         {
 			"matches": [
 				"https://*.shopifycs.com/*"
 			],
 			"js": [
-				"shopifycc.js"
+				"src/shopifycc.js"
 			],
 			"all_frames": true
         },
@@ -24,14 +32,17 @@
 			"matches": [
 				"https://*/products/*"
 			],
-			"js": [
-				"shopifyrequest.js"
-			],
-			"all_frames": true
+			"js": ["thirdParty/jquery-3.5.1.min.js","src/shopifyrequest.js"]
 		}
     ],
     "browser_action": {
-        "default_popup":"popup1.html",
+        "default_icon": {                    
+            "16": "icons/drip4.png",         
+            "24": "icons/drip4.png",         
+            "32": "icons/drip4.png"           
+          },
+        "default_popup":"eyes/login.html",
         "default_title": "Splash"
+        
     }
 }
