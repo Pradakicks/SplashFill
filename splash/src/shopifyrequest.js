@@ -1,14 +1,18 @@
 
 window.onload = function () {
+  chrome.storage.local.get('loginStatus', (data) => {
+    this.loginStatus = data.loginStatus
+  //  console.log(this.loginStatus)
+    if(this.loginStatus){
   chrome.storage.local.get('profile', (data) => {
     this.profiles = data.profile.profile
     
-    console.log(this.profiles)
-    console.log(this.profiles.addressLine1)
+  //  console.log(this.profiles)
+  //  console.log(this.profiles.addressLine1)
 
       chrome.storage.local.get('modes', (data) => {
           this.modes = data.modes.modes
-          console.log(this.modes)
+        //  console.log(this.modes)
 
       if (this.modes.shopifyRequest == true || this.modes.shopifyRequest == 'true') {
     
@@ -37,7 +41,7 @@ window.onload = function () {
             zipCode: this.profiles.zipCode,
         }
     }
-    console.log(item)
+  //  console.log(item)
 // let property = document.getElementById('tags').value
 var responseText = ''
 
@@ -59,7 +63,7 @@ async function getPaymentIds () {
     "mode": "cors"
   })
     responseText = await paymentidReq.text();
-  console.log(responseText)
+//  console.log(responseText)
   return responseText
 } getPaymentIds ()
 
@@ -70,15 +74,15 @@ elem[0].addEventListener('click', function(){
       //   window.setInterval(()=>{
       //     var $dom = $('<html>').html(`${res.text()}`)
       //   $dom(meta)[0].product.variants.map((data)=>{
-      //     console.log(data.id)})
+      //   //  console.log(data.id)})
       // })
       //   }, 1000)
         
       // $(meta)[0].product.variants.map((data)=>{
-      //   console.log(data.id)})
+      // //  console.log(data.id)})
       let selectedVariant = document.getElementsByName('id')[0].value
 
-      console.log(document.getElementsByName('id')[0].value)
+    //  console.log(document.getElementsByName('id')[0].value)
   async function fetchCheckout (){
         fetch(`https://${domaindoc}/checkout/`, {
   "headers": {
@@ -117,18 +121,18 @@ elem[0].addEventListener('click', function(){
     async function ab () {
        var newurl = res.url
        var realUrl = res.url
-       console.log(newurl)
+     //  console.log(newurl)
       async function getFormValues(url) {
       const response = await fetch(url);
       const response_html = await response.text();
-     // console.log(response_html)
+     //// console.log(response_html)
       return response_html
   } 
       const response_html = await getFormValues(newurl);
     //  const gateway = response_html.split('data-select-gateway="')[1].split('"')[0];
       const authenticity_token = response_html.split('name="authenticity_token" value="')[1].split('"')[0];
-    //  console.log(gateway)
-      console.log(authenticity_token)
+    ////  console.log(gateway)
+    //  console.log(authenticity_token)
    
    // let texRes =  res.text().then((res)=>{
   //  window.open = res.text.search('authenticity_token')
@@ -141,7 +145,7 @@ elem[0].addEventListener('click', function(){
 
    // let actualUrl = newurl + "?previous_step=contact_information&step=shipping_method"
 
-    console.log(newurl)
+  //  console.log(newurl)
     fetch(newurl, {
   "headers": {
     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -162,18 +166,18 @@ elem[0].addEventListener('click', function(){
   "credentials": "include"
 }).then((res)=>{
        // let htmlDoc = res.text()
-      //  console.log(htmlDoc)
+      ////  console.log(htmlDoc)
 
 async function runIt () {
 
         async function getShippingRates(url) {
           const response1 = await fetch(url);
           const response_html1 = await response1.text();
-       //   console.log(response_html1)
+       // //  console.log(response_html1)
           return response_html1
       } 
           const response_html1 = await getShippingRates(res.url);
-          console.log(response_html1)
+        //  console.log(response_html1)
           if (response_html1.includes('data-shipping-method="')){
              const shippingMethod = response_html1.split('div class="radio-wrapper" data-shipping-method="')[1].split('"')[0]
              let shippingMethodStep = await fetch(res.url, {
@@ -195,41 +199,41 @@ async function runIt () {
                 "credentials": "include"
               })
         //.split('div class="radio-wrapper" data-shipping-method="')[1].split('"')[0]
-        console.log(shippingMethod)
+      //  console.log(shippingMethod)
         } 
          
         var newurl = res.url
-          console.log(newurl)
+        //  console.log(newurl)
         
       async function getGateways(url) {
         const response2 = await fetch(url);
         const response_html2 = await response2.text();
-     //   console.log(response_html2)
+     // //  console.log(response_html2)
         return response_html2
     } 
     
 
 
         let gatewayUrl = `${realUrl}?step=payment_method`
-        console.log(gatewayUrl)
+      //  console.log(gatewayUrl)
         const response_html2 =  await getGateways(gatewayUrl);
-       // console.log(response_html2)
+       //// console.log(response_html2)
       //  const responseText =  await getPaymentIds();
         var pay_gateway = response_html2.split('data-select-gateway=')[1].split('"')[1] 
         var final_price = response_html2.split('data-checkout-payment-due-target="')[1].split('>')[1].slice(1).split('<')[0]
-        console.log(final_price)
+      //  console.log(final_price)
         
-        console.log(final_price)   
+      //  console.log(final_price)   
         let _price = final_price.split('.')
         var actual_final_price = _price[0] + _price[1]
-        console.log(actual_final_price)
+      //  console.log(actual_final_price)
         const pay_id = responseText.split('{"id":"')[1].split('"')[0]
 if (final_price == 0.00){
           var pay_gateway = 'free'
         } else {
           // Payment Request
-          console.log('Payment Request')
-          console.log('Payment Request')
+        //  console.log('Payment Request')
+        //  console.log('Payment Request')
        await fetch(realUrl, {
         "headers": {
           "accept": "*/*",
@@ -248,7 +252,7 @@ if (final_price == 0.00){
 });
         }
         
-      console.log(pay_gateway)
+    //  console.log(pay_gateway)
 
         // Place Order
         try {
@@ -273,7 +277,7 @@ if (final_price == 0.00){
         window.open(res.url)
       });
         } catch (error) {
-          console.log(error)
+        //  console.log(error)
           alert(error)
         }
      
@@ -297,7 +301,7 @@ if (final_price == 0.00){
         let newurl = a
         let actualUrl = newurl + "?previous_step=contact_information&step=shipping_method"
     //    window.open(newurl)
-    console.log(newurl)
+  //  console.log(newurl)
 
         try {
             fetch(actualUrl, {
@@ -320,7 +324,7 @@ if (final_price == 0.00){
       }).then((res)=>{
           let newurl = res.url
          // window.open(newurl)
-    console.log(newurl)
+  //  console.log(newurl)
 
           fetch(newurl, {
               "headers": {
@@ -351,6 +355,7 @@ if (final_price == 0.00){
     }
    }
   })  
+})}
+  })
 }
-
-  )}
+  

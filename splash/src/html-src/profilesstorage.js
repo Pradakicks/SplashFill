@@ -1,5 +1,9 @@
 
 window.onload = function () {
+    chrome.storage.local.get('loginStatus', (data) => {
+        this.loginStatus = data.loginStatus
+        // console.log(this.loginStatus)
+        if(this.loginStatus){
   document.getElementById('save-btn').onclick = function (){
     var value = {
         profile : {
@@ -81,7 +85,7 @@ window.onload = function () {
 chrome.storage.onChanged.addListener(function(changes, namespace) {
         for (var key in changes) {
           var storageChange = changes[key];
-          console.log('Storage key "%s" in namespace "%s" changed. ' +
+           console.log('Storage key "%s" in namespace "%s" changed. ' +
                       'Old value was "%s", new value is "%s".',
                       key,
                       namespace,
@@ -92,8 +96,8 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 
 chrome.storage.local.set({profile : value}, function() {
 
-    console.log(`Profile ${value} Saved`);
-    console.log(`${value}`);
+    // console.log(`Profile ${value} Saved`);
+    // console.log(`${value}`);
   });
 
 
@@ -103,7 +107,7 @@ chrome.storage.local.set({profile : value}, function() {
 document.getElementById('profile-load').onclick = function () {
         chrome.storage.local.get('profile', (data) => {
             this.profiles = data.profile.profile
-            console.log(this.profiles)
+            // console.log(this.profiles)
             document.getElementById('profile-name').value = this.profiles.profileName,
             document.getElementById('first-name').value = this.profiles.firstName,
             document.getElementById('last-name').value = this.profiles.lastName,
@@ -124,6 +128,9 @@ document.getElementById('profile-load').onclick = function () {
             
         })
     }
+} else {
+    window.location.replace('../../eyes/login.html')
+}})
 }
 
 // document.getElementById('setting-save-btn').onclick = function () {

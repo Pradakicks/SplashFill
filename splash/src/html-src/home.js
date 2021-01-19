@@ -1,5 +1,8 @@
 window.onload = function () {
-
+  chrome.storage.local.get('loginStatus', (data) => {
+    this.loginStatus = data.loginStatus
+   // // console.log(this.loginStatus)
+    if(this.loginStatus){
 //   chrome.storage.local.get('modes', (data) => {
 //     this.modes = data.modes.modes
 
@@ -35,7 +38,7 @@ var mode = {
 chrome.storage.onChanged.addListener(function(changes, namespace) {
 for (var key in changes) {
   var storageChange = changes[key];
-  console.log('Storage key "%s" in namespace "%s" changed. ' +
+   console.log('Storage key "%s" in namespace "%s" changed. ' +
               'Old value was "%s", new value is "%s".',
               key,
               namespace,
@@ -44,10 +47,10 @@ for (var key in changes) {
 }
 });
 
-console.log(mode)
+// console.log(mode)
 chrome.storage.local.set({modes : mode}, function() {
-console.log(`Settings Saved`);
-console.log(`${mode}`);
+// console.log(`Settings Saved`);
+// console.log(`${mode}`);
 });
 }  
 
@@ -55,7 +58,7 @@ console.log(`${mode}`);
 document.getElementById('home-load-btn').onclick = function () {
 chrome.storage.local.get('modes', (data) => {
     this.modes = data.modes.modes
-    console.log(this.modes)
+   // // console.log(this.modes)
     document.getElementById('toggle-btn').value = this.modes.shopifyAutofill
   //  document.getElementById('toggle-btn').style = this.modes.shopifyAutofill
     document.getElementById('req-toggle-btn').value = this.modes.shopifyRequest
@@ -74,5 +77,7 @@ chrome.storage.local.get('modes', (data) => {
 }
   
 
-
+    }else {
+      window.location.replace('../../eyes/login.html')
+    }})
 }

@@ -2,45 +2,21 @@ let settings;
 
 
 window.onload = function () {
-    let item = {
-        supremeACO: true,
-        profile : {
-            address: "123 main street",
-            address2: "",
-            apt: "",
-            cardNumber: "4242424242424242",
-            cardType: "credit card",
-            actualCardType: "VISA",
-            city: "Wallkill",
-            country: "US",
-            countryCode: "United Sate", // country Name
-            cvv: "430",
-            email: "test@gmail.com", // put an actual email in
-            loginEmail: "arielpradashady@gmail.com", // put an actual email in
-            loginPass: "RgBiv123PradaUpNext", // put an actual email in
-            expirationMonth: '08',
-            expirationYear: '2026',
-            firstName: "Tim",
-            id: "ID19573F",
-            lastName: "Smithson",
-            name: "Home",
-            nameOnCard: "Mr Tim Smithson",
-            phoneNumber: "8455416789",
-            state: "NY", // CA, NC, NY, etc...
-            zipCode: "12589",
-        }
-    }
+	chrome.storage.local.get('loginStatus', (data) => {
+		this.loginStatus = data.loginStatus
+		// console.log(this.loginStatus)
+	if(this.loginStatus){
 	// chrome.storage.local.get({ profiles: [], selectedProfile: null, enabled: false, settings: {} }, (results) => {
 	// 	profile = results.profiles.find(profile => profile.id === results.selectedProfile);
 	// 	settings = results.settings;
 	chrome.storage.local.get('profile', (data) => {
 		this.profiles = data.profile.profile
 		
-		console.log(this.profiles)
-		console.log(this.profiles.addressLine1)
+		// console.log(this.profiles)
+		// console.log(this.profiles.addressLine1)
 		chrome.storage.local.get('modes', (data) => {
 			  this.modes = data.modes.modes
-			  console.log(this.modes)
+			  // console.log(this.modes)
 			  if (this.profiles) {
 				if (this.modes.supremeACO == true || this.modes.supremeACO == 'true') {
 
@@ -79,7 +55,10 @@ window.onload = function () {
 			}
 
 		})})
-		
+		}	
+	})
+
+
 	};
 
 

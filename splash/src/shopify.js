@@ -1,41 +1,20 @@
 let settings;
-// import { Profiles } from './profiles';
-// let item = {
-//     profile : {
-//         address: "123 main street",
-//         apt: "",
-//         cardNumber: "4060680218089298",
-//         cardType: "visa",
-//         city: "Wallkill",
-//         country: "United States", // country Name
-//         cvv: "430",
-//         email: "test@gmail.com", // put an actual email in
-//         loginEmail: "arielpradashady@gmail.com", // put an actual email in
-//         loginPass: "RgBiv123PradaUpNext", // put an actual email in
-//         expirationMonth: 8,
-//         expirationYear: 26,
-//         firstName: "Tim",
-//         id: "ID19573F",
-//         lastName: "Smithson",
-//         name: "Home",
-//         nameOnCard: "Mr Tim Smithson",
-//         phoneNumber: "8455416789",
-//         state: "NY", // CA, NC, NY, etc...
-//         zipCode: "12589",
-//     }
-// }
 window.onload = function () {
+	chrome.storage.local.get('loginStatus', (data) => {
+		this.loginStatus = data.loginStatus
+		// console.log(this.loginStatus)
+		if(this.loginStatus){
 	//  chrome.storage.local.get({ profiles: [], selectedProfile: null, enabled: false, settings: {} }, (results) => {		
 	//  	profile = results.profiles.find(profile => profile.id === results.selectedProfile);
 	//  	settings = results.settings;
 	chrome.storage.local.get('profile', (data) => {
 		this.profiles = data.profile.profile
 		
-		console.log(this.profiles)
-		console.log(this.profiles.addressLine1)
+		// console.log(this.profiles)
+		// console.log(this.profiles.addressLine1)
 		chrome.storage.local.get('modes', (data) => {
 			  this.modes = data.modes.modes
-			  console.log(this.modes)
+			  // console.log(this.modes)
 			  const currentStep = () => {
 				let element = document.querySelector('[data-step]');
 				return element.dataset.step;
@@ -99,7 +78,7 @@ window.onload = function () {
 						fillField('#checkout_billing_address_country', this.profiles.country, true);
 						fillField('#checkout_billing_address_province', this.profiles.state, true);
 	
-						console.log(hasCaptcha());
+						// console.log(hasCaptcha());
 						
 	
 						if (true) {
@@ -126,6 +105,6 @@ window.onload = function () {
 	
 	
 		  
-
+		}})
 
 		}

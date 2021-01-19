@@ -1,4 +1,8 @@
 window.onload = function () {
+    chrome.storage.local.get('loginStatus', (data) => {
+        this.loginStatus = data.loginStatus
+        // console.log(this.loginStatus)
+        if(this.loginStatus){
     var toggled = false
     var toggled1 = false
     var toggled2 = false
@@ -8,17 +12,17 @@ window.onload = function () {
     var toggled6 = false
     chrome.storage.local.get('modes', (data) => {
         this.modes = data.modes.modes
-        console.log(this.modes)
+        // console.log(this.modes)
 
         function shopifyAutofill () {
              if(this.modes.shopifyAutofill == true || this.modes.shopifyAutofill == 'true'){
-      //      console.log(`The value is ${this.modes.shopifyAutofill}`)
+      //      // console.log(`The value is ${this.modes.shopifyAutofill}`)
         document.getElementById('toggle-btn').value = this.modes.shopifyAutofill 
         document.getElementById('toggle-btn1').value = this.modes.shopifyAutofill 
         document.getElementById('toggle-btn').style = "display: none;"
         document.getElementById('toggle-btn1').style = "display: block;"
         } else {
-       //     console.log(`The value is ${this.modes.shopifyAutofill}`)
+       //     // console.log(`The value is ${this.modes.shopifyAutofill}`)
 
             document.getElementById('toggle-btn').value = this.modes.shopifyAutofill 
             document.getElementById('toggle-btn1').value = this.modes.shopifyAutofill 
@@ -29,14 +33,14 @@ window.onload = function () {
        
         function shopifyRequest () {
             if(this.modes.shopifyRequest == true || this.modes.shopifyRequest == 'true'){
-             //   console.log(`The value is ${this.modes.shopifyRequest}`)
+             //   // console.log(`The value is ${this.modes.shopifyRequest}`)
             document.getElementById('req-toggle-btn').value = this.modes.shopifyRequest 
             document.getElementById('req-toggle-btn1').value = this.modes.shopifyRequest 
             document.getElementById('req-toggle-btn').style = "display: none;"
             document.getElementById('req-toggle-btn1').style = "display: block;"
             } else {
-             //   console.log(`The value is ${this.modes.shopifyRequest}`)
-             //   console.log(`The value is ${this.modes.shopifyRequest}`)
+             //   // console.log(`The value is ${this.modes.shopifyRequest}`)
+             //   // console.log(`The value is ${this.modes.shopifyRequest}`)
     
                 document.getElementById('req-toggle-btn').value = this.modes.shopifyRequest 
                 document.getElementById('req-toggle-btn1').value = this.modes.shopifyRequest 
@@ -47,14 +51,14 @@ window.onload = function () {
             
          function shopifyACO () {
             if(this.modes.shopifyNormalACO == true || this.modes.shopifyNormalACO == 'true'){
-             //   console.log(`The value is ${this.modes.shopifyNormalACO}`)
+             //   // console.log(`The value is ${this.modes.shopifyNormalACO}`)
             document.getElementById('normal-aco-toggle').value = this.modes.shopifyNormalACO 
             document.getElementById('normal-aco-toggle1').value = this.modes.shopifyNormalACO 
             document.getElementById('normal-aco-toggle').style = "display: none;"
             document.getElementById('normal-aco-toggle1').style = "display: block;"
             } else {
-             //   console.log(`The value is ${this.modes.shopifyNormalACO}`)
-             //   console.log(`The value is ${this.modes.shopifyNormalACO}`)
+             //   // console.log(`The value is ${this.modes.shopifyNormalACO}`)
+             //   // console.log(`The value is ${this.modes.shopifyNormalACO}`)
     
                 document.getElementById('normal-aco-toggle').value = this.modes.shopifyNormalACO 
                 document.getElementById('normal-aco-toggle1').value = this.modes.shopifyNormalACO 
@@ -64,14 +68,14 @@ window.onload = function () {
          } shopifyACO ()
          function shopifyATC () {
             if(this.modes.shopifyATC == true || this.modes.shopifyATC == 'true'){
-             //   console.log(`The value is ${this.modes.shopifyATC}`)
+             //   // console.log(`The value is ${this.modes.shopifyATC}`)
             document.getElementById('atc-toggle-btn').value = this.modes.shopifyATC 
             document.getElementById('atc-toggle-btn1').value = this.modes.shopifyATC 
             document.getElementById('atc-toggle-btn').style = "display: none;"
             document.getElementById('atc-toggle-btn1').style = "display: block;"
             } else {
-             //   console.log(`The value is ${this.modes.shopifyATC}`)
-             //   console.log(`The value is ${this.modes.shopifyATC}`)
+             //   // console.log(`The value is ${this.modes.shopifyATC}`)
+             //   // console.log(`The value is ${this.modes.shopifyATC}`)
     
                 document.getElementById('atc-toggle-btn').value = this.modes.shopifyATC 
                 document.getElementById('atc-toggle-btn1').value = this.modes.shopifyATC 
@@ -81,14 +85,14 @@ window.onload = function () {
          } shopifyATC ()
          function supremeAutofill () {
             if(this.modes.supremeAutofill == true || this.modes.supremeAutofill == 'true'){
-             //   console.log(`The value is ${this.modes.supremeAutofill}`)
+             //   // console.log(`The value is ${this.modes.supremeAutofill}`)
             document.getElementById('sup-autofill-btn').value = this.modes.supremeAutofill 
             document.getElementById('sup-autofill-btn1').value = this.modes.supremeAutofill 
             document.getElementById('sup-autofill-btn').style = "display: none;"
             document.getElementById('sup-autofill-btn1').style = "display: block;"
             } else {
-             //   console.log(`The value is ${this.modes.supremeAutofill}`)
-             //   console.log(`The value is ${this.modes.supremeAutofill}`)
+             //   // console.log(`The value is ${this.modes.supremeAutofill}`)
+             //   // console.log(`The value is ${this.modes.supremeAutofill}`)
     
                 document.getElementById('sup-autofill-btn').value = this.modes.supremeAutofill 
                 document.getElementById('sup-autofill-btn1').value = this.modes.supremeAutofill 
@@ -98,14 +102,14 @@ window.onload = function () {
          } supremeAutofill ()
          function supremeACO () {
             if(this.modes.supremeACO == true || this.modes.supremeACO == 'true'){
-             //   console.log(`The value is ${this.modes.supremeACO}`)
+             //   // console.log(`The value is ${this.modes.supremeACO}`)
             document.getElementById('sup-aco-btn').value = this.modes.supremeACO 
             document.getElementById('sup-aco-btn1').value = this.modes.supremeACO 
             document.getElementById('sup-aco-btn').style = "display: none;"
             document.getElementById('sup-aco-btn1').style = "display: block;"
             } else {
-             //   console.log(`The value is ${this.modes.supremeACO}`)
-             //   console.log(`The value is ${this.modes.supremeACO}`)
+             //   // console.log(`The value is ${this.modes.supremeACO}`)
+             //   // console.log(`The value is ${this.modes.supremeACO}`)
     
                 document.getElementById('sup-aco-btn').value = this.modes.supremeACO 
                 document.getElementById('sup-aco-btn1').value = this.modes.supremeACO 
@@ -115,14 +119,14 @@ window.onload = function () {
          } supremeACO ()
          function supremeATCCart () {
             if(this.modes.supremeATCCart == true || this.modes.supremeATCCart == 'true'){
-             //   console.log(`The value is ${this.modes.supremeATCCart}`)
+             //   // console.log(`The value is ${this.modes.supremeATCCart}`)
             document.getElementById('sup-atccart-btn').value = this.modes.supremeATCCart 
             document.getElementById('sup-atccart-btn1').value = this.modes.supremeATCCart 
             document.getElementById('sup-atccart-btn').style = "display: none;"
             document.getElementById('sup-atccart-btn1').style = "display: block;"
             } else {
-             //   console.log(`The value is ${this.modes.supremeATCCart}`)
-             //   console.log(`The value is ${this.modes.supremeATCCart}`)
+             //   // console.log(`The value is ${this.modes.supremeATCCart}`)
+             //   // console.log(`The value is ${this.modes.supremeATCCart}`)
     
                 document.getElementById('sup-atccart-btn').value = this.modes.supremeATCCart 
                 document.getElementById('sup-atccart-btn1').value = this.modes.supremeATCCart 
@@ -144,8 +148,8 @@ window.onload = function () {
     //    document.getElementById('sup-atccart-btn').value = this.modes.supremeATCCart
       //  document.getElementById('sup-atccart-btn').style = this.modes.supremeATCCart1
         // for(var element in this.modes){
-        //     console.log(element)
-        //     console.log(this.modes[element])
+        //     // console.log(element)
+        //     // console.log(this.modes[element])
         //   //  if()
         // }
         toggled = this.modes.shopifyAutofill
@@ -171,10 +175,10 @@ document.getElementById('toggle-btn').onclick = function toggle(){
 				}
 				// if(toggled){
                 //     toggled = false;
-                //     console.log(toggled)
-                //     console.log(toggled)
-                //     console.log(toggled)
-                //     console.log(toggled)
+                //     // console.log(toggled)
+                //     // console.log(toggled)
+                //     // console.log(toggled)
+                //     // console.log(toggled)
                 //     document.getElementById("toggle-btn").style.display = "block";
                 //     document.getElementById("toggle-btn").value = false
                 //     document.getElementById("toggle-btn1").style.display = "none";
@@ -183,7 +187,7 @@ document.getElementById('toggle-btn').onclick = function toggle(){
 				// }
             } 
 document.getElementById('toggle-btn1').onclick = function toggle(){
-    console.log(toggled)
+    // console.log(toggled)
     // if(!toggled){
     //     toggled = true;
     //     document.getElementById("toggle-btn").style.display = "none"
@@ -223,7 +227,7 @@ document.getElementById('req-toggle-btn').onclick = function toggle(){
     // }
 } 
 document.getElementById('req-toggle-btn1').onclick = function toggle(){
-    console.log(toggled1)
+    // console.log(toggled1)
 
 // if(!toggled1){
 // toggled1 = true;
@@ -447,7 +451,7 @@ document.getElementById('home-save-btn').onclick = function () {
     chrome.storage.onChanged.addListener(function(changes, namespace) {
     for (var key in changes) {
       var storageChange = changes[key];
-      console.log('Storage key "%s" in namespace "%s" changed. ' +
+      // console.log('Storage key "%s" in namespace "%s" changed. ' +
                   'Old value was "%s", new value is "%s".',
                   key,
                   namespace,
@@ -456,10 +460,10 @@ document.getElementById('home-save-btn').onclick = function () {
     }
     });
     
-    console.log(mode)
+    // console.log(mode)
     chrome.storage.local.set({modes : mode}, function() {
-    console.log(`Settings Saved`);
-    console.log(`${mode}`);
+    // console.log(`Settings Saved`);
+    // console.log(`${mode}`);
     });
     }  
     
@@ -467,16 +471,16 @@ document.getElementById('home-save-btn').onclick = function () {
 document.getElementById('home-load-btn').onclick = function () {
     chrome.storage.local.get('modes', (data) => {
         this.modes = data.modes.modes
-        console.log(this.modes)
+        // console.log(this.modes)
         function shopifyAutofill () {
             if(this.modes.shopifyAutofill == true || this.modes.shopifyAutofill == 'true'){
-     //      console.log(`The value is ${this.modes.shopifyAutofill}`)
+     //      // console.log(`The value is ${this.modes.shopifyAutofill}`)
        document.getElementById('toggle-btn').value = this.modes.shopifyAutofill 
        document.getElementById('toggle-btn1').value = this.modes.shopifyAutofill 
        document.getElementById('toggle-btn').style = "display: none;"
        document.getElementById('toggle-btn1').style = "display: block;"
        } else {
-      //     console.log(`The value is ${this.modes.shopifyAutofill}`)
+      //     // console.log(`The value is ${this.modes.shopifyAutofill}`)
 
            document.getElementById('toggle-btn').value = this.modes.shopifyAutofill 
            document.getElementById('toggle-btn1').value = this.modes.shopifyAutofill 
@@ -487,14 +491,14 @@ document.getElementById('home-load-btn').onclick = function () {
       
        function shopifyRequest () {
            if(this.modes.shopifyRequest == true || this.modes.shopifyRequest == 'true'){
-            //   console.log(`The value is ${this.modes.shopifyRequest}`)
+            //   // console.log(`The value is ${this.modes.shopifyRequest}`)
            document.getElementById('req-toggle-btn').value = this.modes.shopifyRequest 
            document.getElementById('req-toggle-btn1').value = this.modes.shopifyRequest 
            document.getElementById('req-toggle-btn').style = "display: none;"
            document.getElementById('req-toggle-btn1').style = "display: block;"
            } else {
-            //   console.log(`The value is ${this.modes.shopifyRequest}`)
-            //   console.log(`The value is ${this.modes.shopifyRequest}`)
+            //   // console.log(`The value is ${this.modes.shopifyRequest}`)
+            //   // console.log(`The value is ${this.modes.shopifyRequest}`)
    
                document.getElementById('req-toggle-btn').value = this.modes.shopifyRequest 
                document.getElementById('req-toggle-btn1').value = this.modes.shopifyRequest 
@@ -505,14 +509,14 @@ document.getElementById('home-load-btn').onclick = function () {
            
         function shopifyACO () {
            if(this.modes.shopifyNormalACO == true || this.modes.shopifyNormalACO == 'true'){
-            //   console.log(`The value is ${this.modes.shopifyNormalACO}`)
+            //   // console.log(`The value is ${this.modes.shopifyNormalACO}`)
            document.getElementById('normal-aco-toggle').value = this.modes.shopifyNormalACO 
            document.getElementById('normal-aco-toggle1').value = this.modes.shopifyNormalACO 
            document.getElementById('normal-aco-toggle').style = "display: none;"
            document.getElementById('normal-aco-toggle1').style = "display: block;"
            } else {
-            //   console.log(`The value is ${this.modes.shopifyNormalACO}`)
-            //   console.log(`The value is ${this.modes.shopifyNormalACO}`)
+            //   // console.log(`The value is ${this.modes.shopifyNormalACO}`)
+            //   // console.log(`The value is ${this.modes.shopifyNormalACO}`)
    
                document.getElementById('normal-aco-toggle').value = this.modes.shopifyNormalACO 
                document.getElementById('normal-aco-toggle1').value = this.modes.shopifyNormalACO 
@@ -522,14 +526,14 @@ document.getElementById('home-load-btn').onclick = function () {
         } shopifyACO ()
         function shopifyATC () {
            if(this.modes.shopifyATC == true || this.modes.shopifyATC == 'true'){
-            //   console.log(`The value is ${this.modes.shopifyATC}`)
+            //   // console.log(`The value is ${this.modes.shopifyATC}`)
            document.getElementById('atc-toggle-btn').value = this.modes.shopifyATC 
            document.getElementById('atc-toggle-btn1').value = this.modes.shopifyATC 
            document.getElementById('atc-toggle-btn').style = "display: none;"
            document.getElementById('atc-toggle-btn1').style = "display: block;"
            } else {
-            //   console.log(`The value is ${this.modes.shopifyATC}`)
-            //   console.log(`The value is ${this.modes.shopifyATC}`)
+            //   // console.log(`The value is ${this.modes.shopifyATC}`)
+            //   // console.log(`The value is ${this.modes.shopifyATC}`)
    
                document.getElementById('atc-toggle-btn').value = this.modes.shopifyATC 
                document.getElementById('atc-toggle-btn1').value = this.modes.shopifyATC 
@@ -539,14 +543,14 @@ document.getElementById('home-load-btn').onclick = function () {
         } shopifyATC ()
         function supremeAutofill () {
            if(this.modes.supremeAutofill == true || this.modes.supremeAutofill == 'true'){
-            //   console.log(`The value is ${this.modes.supremeAutofill}`)
+            //   // console.log(`The value is ${this.modes.supremeAutofill}`)
            document.getElementById('sup-autofill-btn').value = this.modes.supremeAutofill 
            document.getElementById('sup-autofill-btn1').value = this.modes.supremeAutofill 
            document.getElementById('sup-autofill-btn').style = "display: none;"
            document.getElementById('sup-autofill-btn1').style = "display: block;"
            } else {
-            //   console.log(`The value is ${this.modes.supremeAutofill}`)
-            //   console.log(`The value is ${this.modes.supremeAutofill}`)
+            //   // console.log(`The value is ${this.modes.supremeAutofill}`)
+            //   // console.log(`The value is ${this.modes.supremeAutofill}`)
    
                document.getElementById('sup-autofill-btn').value = this.modes.supremeAutofill 
                document.getElementById('sup-autofill-btn1').value = this.modes.supremeAutofill 
@@ -556,14 +560,14 @@ document.getElementById('home-load-btn').onclick = function () {
         } supremeAutofill ()
         function supremeACO () {
            if(this.modes.supremeACO == true || this.modes.supremeACO == 'true'){
-            //   console.log(`The value is ${this.modes.supremeACO}`)
+            //   // console.log(`The value is ${this.modes.supremeACO}`)
            document.getElementById('sup-aco-btn').value = this.modes.supremeACO 
            document.getElementById('sup-aco-btn1').value = this.modes.supremeACO 
            document.getElementById('sup-aco-btn').style = "display: none;"
            document.getElementById('sup-aco-btn1').style = "display: block;"
            } else {
-            //   console.log(`The value is ${this.modes.supremeACO}`)
-            //   console.log(`The value is ${this.modes.supremeACO}`)
+            //   // console.log(`The value is ${this.modes.supremeACO}`)
+            //   // console.log(`The value is ${this.modes.supremeACO}`)
    
                document.getElementById('sup-aco-btn').value = this.modes.supremeACO 
                document.getElementById('sup-aco-btn1').value = this.modes.supremeACO 
@@ -573,14 +577,14 @@ document.getElementById('home-load-btn').onclick = function () {
         } supremeACO ()
         function supremeATCCart () {
            if(this.modes.supremeATCCart == true || this.modes.supremeATCCart == 'true'){
-            //   console.log(`The value is ${this.modes.supremeATCCart}`)
+            //   // console.log(`The value is ${this.modes.supremeATCCart}`)
            document.getElementById('sup-atccart-btn').value = this.modes.supremeATCCart 
            document.getElementById('sup-atccart-btn1').value = this.modes.supremeATCCart 
            document.getElementById('sup-atccart-btn').style = "display: none;"
            document.getElementById('sup-atccart-btn1').style = "display: block;"
            } else {
-            //   console.log(`The value is ${this.modes.supremeATCCart}`)
-            //   console.log(`The value is ${this.modes.supremeATCCart}`)
+            //   // console.log(`The value is ${this.modes.supremeATCCart}`)
+            //   // console.log(`The value is ${this.modes.supremeATCCart}`)
    
                document.getElementById('sup-atccart-btn').value = this.modes.supremeATCCart 
                document.getElementById('sup-atccart-btn1').value = this.modes.supremeATCCart 
@@ -602,8 +606,8 @@ document.getElementById('home-load-btn').onclick = function () {
    //    document.getElementById('sup-atccart-btn').value = this.modes.supremeATCCart
      //  document.getElementById('sup-atccart-btn').style = this.modes.supremeATCCart1
        // for(var element in this.modes){
-       //     console.log(element)
-       //     console.log(this.modes[element])
+       //     // console.log(element)
+       //     // console.log(this.modes[element])
        //   //  if()
        // }
        toggled = this.modes.shopifyAutofill
@@ -616,7 +620,13 @@ document.getElementById('home-load-btn').onclick = function () {
 
 
     })
+
     }
+
+
+} else {
+    window.location.replace('../../eyes/login.html')
+}})
 }
         
     

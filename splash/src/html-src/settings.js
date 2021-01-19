@@ -1,4 +1,8 @@
  window.onload = function () {
+  chrome.storage.local.get('loginStatus', (data) => {
+    this.loginStatus = data.loginStatus
+     // console.log(this.loginStatus)
+    if(this.loginStatus){
    document.getElementById('setting-save-btn').onclick = function () {
     var set = {
         settings : {
@@ -13,7 +17,7 @@
     chrome.storage.onChanged.addListener(function(changes, namespace) {
     for (var key in changes) {
       var storageChange = changes[key];
-      console.log('Storage key "%s" in namespace "%s" changed. ' +
+       // console.log('Storage key "%s" in namespace "%s" changed. ' +
                   'Old value was "%s", new value is "%s".',
                   key,
                   namespace,
@@ -24,8 +28,8 @@
 
 chrome.storage.local.set({setting : set}, function() {
 
-    console.log(`Settings Saved`);
-    console.log(`${set}`);
+     // console.log(`Settings Saved`);
+     // console.log(`${set}`);
   });
  }  
 
@@ -33,7 +37,7 @@ chrome.storage.local.set({setting : set}, function() {
  document.getElementById('setting-load-btn').onclick = function () {
     chrome.storage.local.get('setting', (data) => {
         this.settings = data.setting.settings
-        console.log(this.settings)
+         // console.log(this.settings)
         document.getElementById('webhook').value = this.settings.webhook,
         document.getElementById('monitor-delay').value = this.settings.monitorDelay,
         document.getElementById('error-delay').value = this.settings.errorDelay,
@@ -45,7 +49,9 @@ chrome.storage.local.set({setting : set}, function() {
     })
 }
 
- 
+}else {
+  window.location.replace('../../eyes/login.html')
+}})
  }
  
  

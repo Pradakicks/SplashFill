@@ -1,15 +1,20 @@
 window.onload = function () {
+
 	// chrome.storage.local.get({ profiles: [], selectedProfile: null, enabled: false, settings: {} }, (results) => {
 	// 	profile = results.profiles.find(profile => profile.id === results.selectedProfile);
 	// 	settings = results.settings;
+	chrome.storage.local.get('loginStatus', (data) => {
+		this.loginStatus = data.loginStatus
+		// console.log(this.loginStatus)
+		if(this.loginStatus){
 	chrome.storage.local.get('profile', (data) => {
 		this.profiles = data.profile.profile
 		
-		console.log(this.profiles)
-		console.log(this.profiles.addressLine1)
+		// console.log(this.profiles)
+		// console.log(this.profiles.addressLine1)
 		chrome.storage.local.get('modes', (data) => {
 			  this.modes = data.modes.modes
-			  console.log(this.modes)
+			  // console.log(this.modes)
 		if (this.profiles) {
 				if (this.modes.shopifyNormalACO) {
 				let fields = {
@@ -20,7 +25,7 @@ window.onload = function () {
 				}
 
 				Object.keys(fields).forEach(id => {
-					console.log(fields[id])
+					// console.log(fields[id])
 					fillField(id, fields[id]);
 				});
 
@@ -32,7 +37,7 @@ window.onload = function () {
 	})
 		
 		
-
+		}})
 //	});
 }
 
