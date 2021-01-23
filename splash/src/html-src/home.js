@@ -1,8 +1,12 @@
 window.onload = function () {
+
+
   chrome.storage.local.get('loginStatus', (data) => {
     this.loginStatus = data.loginStatus
-   // // console.log(this.loginStatus)
+    console.log(this.loginStatus)
     if(this.loginStatus){
+      console.log(this.loginStatus)
+
 //   chrome.storage.local.get('modes', (data) => {
 //     this.modes = data.modes.modes
 
@@ -32,6 +36,8 @@ var mode = {
         supremeAutofill : document.getElementById('sup-autofill-btn').value,
         supremeACO : document.getElementById('sup-aco-btn').value,
         supremeATCCart : document.getElementById('sup-atccart-btn').value,
+        metaLabsFree : document.getElementById('meta-labs-free').value,
+        metaLabsPaid : document.getElementById('meta-labs-paid').value,
     }
 }
 
@@ -58,6 +64,7 @@ chrome.storage.local.set({modes : mode}, function() {
 document.getElementById('home-load-btn').onclick = function () {
 chrome.storage.local.get('modes', (data) => {
     this.modes = data.modes.modes
+    console.log(data.modes)
    // // console.log(this.modes)
     document.getElementById('toggle-btn').value = this.modes.shopifyAutofill
   //  document.getElementById('toggle-btn').style = this.modes.shopifyAutofill
@@ -71,13 +78,17 @@ chrome.storage.local.get('modes', (data) => {
    // document.getElementById('sup-autofill-btn').style = this.modes.supremeAutofill1
     document.getElementById('sup-aco-btn').value = this.modes.supremeACO
   //  document.getElementById('sup-aco-btn').style = this.modes.supremeACO1
-    document.getElementById('sup-atccart-btn').value = this.modes.supremeATCCart
+    document.getElementById('meta-labs-free').value = this.modes.metaLabsFree
+    document.getElementById('meta-labs-paid').value = this.modes.metaLabsPaid
   //  document.getElementById('sup-atccart-btn').style = this.modes.supremeATCCart1
 })
 }
   
 
-    }else {
+    } else {
       window.location.replace('../../eyes/login.html')
-    }})
+    }
+  })
+
+    
 }

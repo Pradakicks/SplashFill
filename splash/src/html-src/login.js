@@ -1,5 +1,8 @@
 window.onload = function () {
 
+chrome.storage.local.get('loginStatus', (data) => {
+    this.loginStatus = data.loginStatus
+    if(!this.loginStatus){
     var d = new Date()
     let getYear = d.getFullYear()
     let getMonth = d.getMonth()
@@ -67,7 +70,6 @@ window.onload = function () {
             var firebaseCheck = {
                 method : "POST",
                 body : JSON.stringify({
-                    "name" : "Adrian",
                     "time" : `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}-${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}-${new Date().getMilliseconds()}`,
                     "Login_Status" : "Successful",
                     "key" : key,
@@ -101,14 +103,17 @@ window.onload = function () {
         })
       //  // console.log(response.status)
         
-    }).catch(error => // console.log('error', error));
+    }).catch(error =>  console.log('error', error));
 	
 	
       //  // console.log(authKey)
         
+    }
+
+     } else {
+        window.location.replace('./home.html')
      }
-
-
+})
 
    } 
 

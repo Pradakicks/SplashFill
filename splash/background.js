@@ -57,12 +57,12 @@ function checkValid() {
         await fetch(`https://splash-fill-default-rtdb.firebaseio.com/users/${data.keys}/loginStatus/.json`).then((response) =>{ 
     response.text().then((res) =>{
         let parsedData = JSON.parse(res)
-        let parsedTime = (parsedData.loginDate)
-        let parsedStatus = (parsedData.status)
+        let parsedTime = (parsedData?.loginDate)
+        let parsedStatus = (parsedData?.status)
         let currentTime = `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}-${new Date().getHours()}`
        // console.log(currentTime)
         let splittedCurrenTime = currentTime.split('-')
-        let splittedParsedTime = parsedTime.split('-')
+        let splittedParsedTime = parsedTime?.split('-')
        // console.log(splittedCurrenTime)
        // console.log(splittedParsedTime)
 
@@ -85,7 +85,7 @@ function checkValid() {
                 if(splittedCurrenTime[1] == splittedParsedTime[1]){
                     if(splittedCurrenTime[2] == splittedParsedTime[2]){
                        // console.log(splittedCurrenTime[3] - splittedParsedTime[3])
-                        if(splittedCurrenTime[3] - splittedParsedTime[3] < 6) {
+                        if(splittedCurrenTime[3] - splittedParsedTime[3] < 12) {
                             setTrue()
                            // console.log('Testing Works')
                         } else {
