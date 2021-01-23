@@ -1,6 +1,6 @@
 {
   "name": "Splash Fill",
-  "version": "1.0.0",
+  "version": "1.3",
   "description": "autofill/chrome extension",
   "main": "splash.js",
   "type": "module",
